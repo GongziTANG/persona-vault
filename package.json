@@ -1,0 +1,36 @@
+{
+  "name": "persona-vault",
+  "version": "0.1.0",
+  "description": "Turn public voices across platforms into living, verifiable knowledge vaults.",
+  "type": "module",
+  "bin": {
+    "personavault": "./bin/personavault.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "schema",
+    "scripts",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check bin/personavault.mjs && node --check src/cli.mjs && node --check src/vault.mjs && node --check src/importers.mjs && node --check scripts/install-skills.mjs && node --check scripts/privacy-scan.mjs",
+    "test": "node --test",
+    "privacy": "node scripts/privacy-scan.mjs",
+    "validate": "npm run check && npm test && npm run privacy"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "knowledge-vault",
+    "digital-archive",
+    "wechat",
+    "weibo",
+    "agent-skill",
+    "markdown"
+  ],
+  "license": "MIT"
+}

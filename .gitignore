@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+*.log
+*.tmp
+
+# Runtime archives and authentication material never belong in Git.
+.wechat-session/
+.state/
+vaults/
+archives/
+exports/
+verification.json
+manifest.json
+
+# Local agent settings may contain machine-specific paths.
+.claude/settings.local.json
+.workbuddy/

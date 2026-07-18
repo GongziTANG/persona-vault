@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/persona-vault.schema.json",
+  "title": "PersonaVault",
+  "type": "object",
+  "required": ["version", "person", "sources", "items", "runs", "createdAt", "updatedAt"],
+  "properties": {
+    "version": { "const": 1 },
+    "person": {
+      "type": "object",
+      "required": ["id", "displayName", "aliases"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "displayName": { "type": "string", "minLength": 1 },
+        "aliases": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/source" }
+    },
+    "items": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/item" }
+    },
+    "runs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/run" }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["platform", "accountId", "displayName", "fullSyncCompleted", "accessibleCount", "statusCounts", "lastSyncedAt"],
+      "properties": {
+        "platform": { "type": "string", "minLength": 1 },
+        "accountId": { "type": "string", "minLength": 1 },
+        "displayName": { "type": "string" },
+        "canonicalUrl": { "type": "string" },
+        "fullSyncCompleted": { "type": "boolean" },
+        "reportedCount": { "type": ["integer", "null"] },
+        "accessibleCount": { "type": "integer", "minimum": 0 },
+        "statusCounts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+        "lastSyncedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "platform", "sourceAccountId", "sourceItemId", "type", "content", "publishedAt", "status", "media", "relations", "metadata", "provenance", "checksum"],
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "platform": { "type": "string", "minLength": 1 },
+        "sourceAccountId": { "type": "string", "minLength": 1 },
+        "sourceItemId": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+        "sourceUrl": { "type": "string" },
+        "status": { "enum": ["captured", "deleted", "unavailable", "failed", "pending"] },
+        "media": { "type": "array" },
+        "relations": { "type": "array" },
+        "metadata": { "type": "object" },
+        "provenance": {
+          "type": "object",
+          "required": ["capturedAt", "sourceArchive"],
+          "properties": {
+            "capturedAt": { "type": "string", "format": "date-time" },
+            "sourceArchive": { "type": "string" },
+            "firstCapturedAt": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": false
+        },
+        "checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "run": {
+      "type": "object",
+      "required": ["id", "sourceKey", "mode", "added", "updated", "unchanged", "scanned", "completed", "evidence", "finishedAt"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sourceKey": { "type": "string", "minLength": 3 },
+        "mode": { "enum": ["full", "incremental"] },
+        "added": { "type": "integer", "minimum": 0 },
+        "updated": { "type": "integer", "minimum": 0 },
+        "unchanged": { "type": "integer", "minimum": 0 },
+        "scanned": { "type": "integer", "minimum": 0 },
+        "completed": { "type": "boolean" },
+        "evidence": { "type": "object" },
+        "finishedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

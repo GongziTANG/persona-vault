@@ -1,0 +1,4 @@
+interface:
+  display_name: "PersonaVault 人物知识资产库"
+  short_description: "跨平台归档公开人物内容，持续增量更新并验证完整性"
+  default_prompt: "Use $build-persona-vault to archive this person's public WeChat and Weibo content into one verified, incrementally updated knowledge vault."

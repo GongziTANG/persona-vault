@@ -1,0 +1,4 @@
+interface:
+  display_name: "微博个人全量归档"
+  short_description: "全量或增量归档个人微博，并输出 Markdown 与 Excel"
+  default_prompt: "Use $archive-weibo-user to archive all accessible posts from a Weibo user and update the Markdown and Excel outputs incrementally."
