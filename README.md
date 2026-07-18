@@ -6,7 +6,7 @@
 
 Archive a person's public writing across platforms, keep it incrementally updated, and give humans and AI one trustworthy corpus to search, cite, and build on.
 
-[⭐ Star the project](../../stargazers) · [💡 Request a connector](../../issues/new?template=connector_request.yml) · [🗣 Share your use case](../../discussions)
+[⭐ Star the project](../../stargazers) · [💡 Request a connector](../../issues/new?template=connector_request.yml) · [🗣 Share your use case](../../discussions) · [🇨🇳 中文介绍](#中文)
 
 </div>
 
@@ -157,13 +157,43 @@ There are three high-leverage ways to help:
 
 Good first contributions include a new importer fixture, a renderer, a schema compatibility test, or a connector specification. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## 中文简介
+<a id="中文"></a>
 
-PersonaVault 把一个人散落在公众号、微博等平台上的公开表达，转化为可验证、可追溯、持续增量更新、可供 AI 使用的长期知识资产。
+## 中文：别让一个人的思想，困在随时会消失的平台里
 
-它不是简单的下载器：首次运行做当前可访问全量，后续只跑增量；删除、权限限制和失败都会诚实记录；公众号与微博保留各自采集器，通过统一协议汇总成一个人物库。
+一个真正值得研究的人，可能把十几年的人生、判断和思想，散落在几千条微博、几百篇公众号文章里。
 
-如果你也希望公共思想不因平台变化而消失，欢迎点 ⭐，并在 Issues 里告诉我们你最需要接入的平台和真实使用场景。
+今天还能搜到，不代表明天还在；你收藏过，也不代表以后找得到。
+
+**PersonaVault 要做的，是把一个人散落在不同平台上的公开表达，变成一座属于你的、持续生长的人物知识库。**
+
+### 你只需要告诉 Agent：我想保存谁
+
+```text
+使用 $build-persona-vault，把这个人当前可访问的公众号和微博历史完整归档，并在以后只做增量更新。
+```
+
+第一次运行，它尽可能保存平台当前仍可访问的全部历史内容；以后再运行，只寻找新增和修改。公众号长文、微博短帖、转发关系、发布日期、原始链接和不可访问状态，最终汇入同一个可搜索、可引用、可交给 AI 使用的人物语料库。
+
+### 它保存的不只是网页，而是一条可被验证的思想时间线
+
+- **不会假装“全部成功”**：删除、权限限制、抓取失败和平台数量差额都会单独说明。
+- **不会每次从头再来**：中断可以续传，第二次开始自动增量，已有内容不会重复。
+- **不会把出处弄丢**：每条内容都保留平台、账号、原始 ID、发布日期和来源链接。
+- **不会把你锁进某个工具**：同时输出适合人阅读的 Markdown 和适合 Agent 使用的 JSONL。
+- **不会上传你的私人档案**：本地优先，登录状态、目标内容和生成的知识库默认不进入 GitHub。
+
+你可以用它研究一位思想家、整理一位创作者、保存一个品牌的长期表达、建立人物年表、寻找某个观点的原始出处，或者为研究、写作和传记准备一份真正可追溯的语料。
+
+> 下载器解决“把文件拿回来”；PersonaVault 想解决的是：**多年以后，我们还能不能完整地理解一个人。**
+
+### 如果这也是你想做的事
+
+- [⭐ 给 PersonaVault 一个 Star](../../stargazers)：让更多人看到“可信人物档案”这个方向。
+- [💡 告诉我们下一个要接入的平台](../../issues/1)：你的真实需求会直接影响连接器优先级。
+- [🗣 分享你想保存的人或使用场景](../../discussions/2)：研究、写作、传记、教育和数字遗产都欢迎。
+
+**你保存的不是一堆 Markdown，而是一个人跨越时间留下的公开思想。**
 
 ## License
 
