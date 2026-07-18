@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Improve README discoverability with a descriptive title, explicit product definition, searchable bilingual use cases, copyable setup URL, and citation-friendly FAQs.
+
 ## 0.1.0 — 2026-07-18
 
 - Introduce the PersonaVault v1 person, source-account, content-item, and run model.

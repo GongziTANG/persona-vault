@@ -1,16 +1,20 @@
 <div align="center">
 
-# PersonaVault
+# PersonaVault: WeChat & Weibo Archive for AI Knowledge Bases
 
-### Turn a public voice into a living, verifiable knowledge asset.
+### Open-source, local-first archiving for public knowledge.
 
-Archive a person's public writing across platforms, keep it incrementally updated, and give humans and AI one trustworthy corpus to search, cite, and build on.
+Export accessible WeChat public-account articles and a Weibo user's historical posts, keep them incrementally updated, and give humans and AI one verified Markdown and JSONL corpus to search, cite, and build on.
 
 [⭐ Star the project](../../stargazers) · [💡 Request a connector](../../issues/new?template=connector_request.yml) · [🗣 Share your use case](../../discussions) · [🇨🇳 中文介绍](#中文)
 
 </div>
 
 ---
+
+## What is PersonaVault?
+
+PersonaVault is an open-source Node.js CLI and Agent Skills toolkit for building a local, cross-platform knowledge base around one public person or creator. It combines WeChat public-account and Weibo archives under stable source IDs, preserves provenance and unavailable states, and verifies the result before calling an archive complete.
 
 Most export tools stop at “download complete.” PersonaVault asks harder questions:
 
@@ -60,7 +64,7 @@ The core rule is simple: **never claim more completeness than the evidence suppo
 Requirements: Node.js 22+ and at least one supported platform connector.
 
 ```bash
-git clone <repository-url> persona-vault
+git clone https://github.com/GongziTANG/persona-vault.git
 cd persona-vault
 npm run validate
 node scripts/install-skills.mjs
@@ -120,6 +124,28 @@ Every canonical item keeps:
 
 This makes the vault useful for research, timelines, semantic search, quote cards, biographies, editorial workflows, and retrieval-augmented generation without losing the path back to the source.
 
+## Frequently asked questions
+
+### Can PersonaVault export every Weibo post from one user?
+
+It archives every historical post the platform still exposes, outputs Markdown and Excel, and records the difference between visible results and any profile count instead of silently claiming inaccessible posts were captured.
+
+### Can it export WeChat public-account articles to Markdown?
+
+Yes. The MPVault connector creates resumable article Markdown with local images and a search index; PersonaVault then imports those records into the same verified timeline as Weibo posts.
+
+### Does it support incremental updates?
+
+Yes. The first run performs a resumable full archive. Later runs stop at known content boundaries, add new records, update changed records under the same stable ID, and leave unchanged records untouched.
+
+### Which AI agents can use the skills?
+
+The installer links the same source skills for Codex, Claude, and WorkBuddy. The deterministic CLI remains available for scripts and other agents.
+
+### Does PersonaVault upload archived content?
+
+No. PersonaVault is local-first. Target content, account sessions, credentials, generated vaults, and machine-specific paths are excluded from the repository by default.
+
 ## Architecture
 
 ```mermaid
@@ -159,7 +185,9 @@ Good first contributions include a new importer fixture, a renderer, a schema co
 
 <a id="中文"></a>
 
-## 中文：别让一个人的思想，困在随时会消失的平台里
+## 中文：微信公众号与微博历史归档，变成可持续更新的人物知识库
+
+**PersonaVault 是一个开源、本地优先的微信公众号文章导出、微博历史归档与人物知识库工具。**它把一个人当前可访问的公众号文章和微博内容统一整理为可验证的 Markdown、Excel 与 JSONL，并支持首次全量、以后增量更新。
 
 一个真正值得研究的人，可能把十几年的人生、判断和思想，散落在几千条微博、几百篇公众号文章里。
 
@@ -186,6 +214,14 @@ Good first contributions include a new importer fixture, a renderer, a schema co
 你可以用它研究一位思想家、整理一位创作者、保存一个品牌的长期表达、建立人物年表、寻找某个观点的原始出处，或者为研究、写作和传记准备一份真正可追溯的语料。
 
 > 下载器解决“把文件拿回来”；PersonaVault 想解决的是：**多年以后，我们还能不能完整地理解一个人。**
+
+### 常见问题
+
+**能导出某个人的所有历史微博吗？** 归档平台当前仍可访问的全部历史微博，并把页面总数差额、不可访问项和失败项如实列出，不把“抓不到”伪装成“已完成”。
+
+**下次运行还要全部重来吗？** 不需要。第一次全量归档并保存断点，以后默认只抓新增或发生变化的内容。
+
+**归档内容会上传到 GitHub 吗？** 不会。目标内容、登录状态、凭据、本机路径和生成的知识库默认只留在本地，并受隐私扫描保护。
 
 ### 如果这也是你想做的事
 
